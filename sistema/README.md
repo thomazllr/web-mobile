@@ -83,3 +83,23 @@ INSERT INTO veiculo_veiculo  (marca, modelo, ano, cor, combustivel) VALUES
 (2, 'Hilux', 2021, 5, 2),
 (3, 'Onix', 2020, 2, 1);
 ```
+
+# baixar postgres
+
+```
+sudo apt update && sudo apt install postgresql postgresql-contrib
+
+sudo service postgresql start
+
+sudo -u postgres psql
+
+CREATE DATABASE sistema;
+CREATE USER postgres WITH PASSWORD 'postgres';
+ALTER ROLE postgres SET client_encoding TO 'utf8';
+ALTER ROLE postgres SET default_transaction_isolation TO 'read committed';
+ALTER ROLE postgres SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE sistema TO postgres;
+
+pip install psycopg2-binary
+
+```
