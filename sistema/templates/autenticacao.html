@@ -1,37 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <!-- Bootstrap compilado (local, pasta static/) -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  </head>
+  <body
+    class="d-flex align-items-center justify-content-center vh-100"
+    style="background-color: #0a0a0a"
+  >
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-5 col-lg-4">
+          <div
+            class="card border-0"
+            style="background-color: #1a1a1a; border-radius: 8px"
+          >
+            <div class="card-body p-5">
+              <!-- Logo ou título -->
+              <div class="text-center mb-5">
+                <img
+                  src="{% static 'img/logo.png' %}"
+                  alt="Logo"
+                  width="60"
+                  class="mb-3"
+                />
+                <h2
+                  class="fw-normal mb-2"
+                  style="color: #ffffff; font-weight: 300"
+                >
+                  Acessar Sistema
+                </h2>
+                <p class="mb-0" style="color: #6c757d; font-size: 0.9rem">
+                  Digite suas credenciais para continuar
+                </p>
+              </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>Document</title>
-</head>
+              <form method="POST" action="/">
+                {% csrf_token %}
+                <div class="mb-4">
+                  <label
+                    for="username"
+                    class="form-label"
+                    style="color: #ffffff; font-weight: 400"
+                    >Usuário</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="username"
+                    placeholder="Digite seu usuário"
+                    name="usuario"
+                    required
+                    style="
+                      background-color: #2a2a2a;
+                      border: 1px solid #404040;
+                      color: #ffffff;
+                      padding: 12px 16px;
+                      border-radius: 6px;
+                    "
+                  />
+                </div>
+                <div class="mb-5">
+                  <label
+                    for="password"
+                    class="form-label"
+                    style="color: #ffffff; font-weight: 400"
+                    >Senha</label
+                  >
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    placeholder="Digite sua senha"
+                    name="senha"
+                    required
+                    style="
+                      background-color: #2a2a2a;
+                      border: 1px solid #404040;
+                      color: #ffffff;
+                      padding: 12px 16px;
+                      border-radius: 6px;
+                    "
+                  />
+                </div>
+                <div class="d-grid">
+                  <button
+                    type="submit"
+                    class="btn btn-lg"
+                    style="
+                      background-color: #ffffff;
+                      color: #1a1a1a;
+                      border: none;
+                      padding: 12px;
+                      border-radius: 6px;
+                      font-weight: 500;
+                      transition: all 0.2s ease;
+                    "
+                    onmouseover="this.style.backgroundColor='#f8f9fa'"
+                    onmouseout="this.style.backgroundColor='#ffffff'"
+                  >
+                    Entrar
+                  </button>
+                </div>
+              </form>
 
-<body>
+              {% if messages %}
+              <div class="mt-4">
+                {% for message in messages %}
+                <div
+                  class="alert text-center"
+                  role="alert"
+                  style="
+                    background-color: #2a2a2a;
+                    color: #ff6b6b;
+                    border: 1px solid #404040;
+                    border-radius: 6px;
+                    font-size: 0.9rem;
+                  "
+                >
+                  {{ message }}
+                </div>
+                {% endfor %}
+              </div>
+              {% endif %}
 
-    <div class="container" style="max-width: 400px; padding-top: 40px;">
-
-        <h1 class="text-center">Login</h1>
-
-        <form>
-            <div class="form-group">
-                <label for="InputUsuário">Usuário: </label>
-                <input type="Usuário" class="form-control" id="exampleInputUsuário1" aria-describedby="UsuárioHelp"
-                    placeholder="Insira seu usuário" required>
-                <small id="UsuárioHelp" class="form-text text-muted">Nunca vamos compartilhar seu usuário com
-                    ningúem.</small>
+              <!-- Links extras -->
+              <div class="text-center mt-5">
+                <a
+                  href="#"
+                  style="
+                    color: #6c757d;
+                    text-decoration: none;
+                    font-size: 0.9rem;
+                  "
+                  >Esqueceu a senha?</a
+                >
+                <span style="color: #404040; margin: 0 8px">|</span>
+                <a
+                  href="#"
+                  style="
+                    color: #6c757d;
+                    text-decoration: none;
+                    font-size: 0.9rem;
+                  "
+                  >Criar nova conta</a
+                >
+              </div>
             </div>
-            <div class="form-group">
-                <label for="InputPassword">Senha</label>
-                <input type="password" class="form-control" id="InputPassword1" placeholder="Insira sua senha" required>
-            </div>
-            <br>
-            <button type="submit" class="btn btn-primary">Logar</button>
-        </form>
+          </div>
+          <p class="text-center mt-4" style="color: #404040; font-size: 0.8rem">
+            &copy; 2025 - thomazllr
+          </p>
+        </div>
+      </div>
     </div>
 
-</body>
+    <style>
+      .form-control:focus {
+        background-color: #2a2a2a !important;
+        border-color: #ffffff !important;
+        color: #ffffff !important;
+        box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1) !important;
+      }
 
+      .form-control::placeholder {
+        color: #6c757d !important;
+      }
+
+      a:hover {
+        color: #ffffff !important;
+      }
+    </style>
+  </body>
 </html>
