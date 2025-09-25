@@ -1,123 +1,106 @@
-{% extends 'base.html' %}
-{% block title %}Lista de Veículos{% endblock %}
-{% block content %}
+{% extends 'base.html' %} 
+{% block title %}Lista de Veículos
+{% endblock %} 
+{%block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="text-dark mb-0">
+    <i class="bi bi-car-front me-2 text-primary"></i>
+    Meus Veículos
+  </h2>
+  <a href="#" class="btn btn-primary px-4 py-2 rounded">
+    <i class="bi bi-plus-lg me-2"></i>Novo Veículo
+  </a>
+</div>
 
 <!-- Formulário de Pesquisa -->
-<div class="mb-5" style="background-color: #1a1a1a; border-radius: 8px; padding: 24px;">
-    <form class="row g-3 align-items-center">
-        <div class="col-lg">
-            <input
-                type="search"
-                class="form-control"
-                name="q"
-                placeholder="Pesquisar por marca, modelo, placa..."
-                style="background-color: #2a2a2a; border: 1px solid #404040; color: #ffffff; padding: 12px 16px; border-radius: 6px;"
-            />
+<div class="card mb-4">
+  <div class="card-body">
+    <form class="row g-3">
+      <div class="col-md-10">
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="bi bi-search"></i>
+          </span>
+          <input
+            type="search"
+            class="form-control"
+            name="q"
+            placeholder="Pesquisar por marca, modelo, placa..."
+          />
         </div>
-        <div class="col-lg-auto">
-            <button 
-                class="btn w-100" 
-                type="submit"
-                style="background-color: #ffffff; color: #1a1a1a; border: none; padding: 12px 24px; border-radius: 6px; font-weight: 500; transition: all 0.2s ease;"
-                onmouseover="this.style.backgroundColor='#f8f9fa'"
-                onmouseout="this.style.backgroundColor='#ffffff'"
-            >
-                <i class="bi bi-search me-1"></i> Pesquisar
-            </button>
-        </div>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-outline-primary w-100" type="submit">
+          Pesquisar
+        </button>
+      </div>
     </form>
+  </div>
 </div>
 
 <!-- Cards de Veículos -->
-<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    {% for veiculo in veiculos %}
-    <div class="col">
-        <div class="card h-100 border-0" style="background-color: #1a1a1a; border-radius: 8px;">
-            <!-- Imagem do Veículo -->
-            <div style="height: 200px; background-color: #2a2a2a; border-radius: 8px 8px 0 0; display: flex; align-items: center; justify-content: center;">
-                <i class="bi bi-car-front" style="font-size: 3rem; color: #404040;"></i>
-            </div>
-            
-            <div class="card-body p-4">
-                <h5 class="card-title mb-4" style="color: #ffffff; font-weight: 400;">
-                    {{ veiculo.get_marca_display }} {{ veiculo.modelo }}
-                </h5>
-                
-                <div class="mb-4">
-                    <div class="row mb-3">
-                        <div class="col-4">
-                            <span style="color: #6c757d; font-size: 0.9rem;">Ano:</span>
-                        </div>
-                        <div class="col-8">
-                            <span style="color: #ffffff; font-size: 0.9rem;">{{ veiculo.ano }}</span>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-4">
-                            <span style="color: #6c757d; font-size: 0.9rem;">Cor:</span>
-                        </div>
-                        <div class="col-8">
-                            <span style="color: #ffffff; font-size: 0.9rem;">{{ veiculo.get_cor_display }}</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <span style="color: #6c757d; font-size: 0.9rem;">Combustível:</span>
-                        </div>
-                        <div class="col-8">
-                            <span style="color: #ffffff; font-size: 0.9rem;">{{ veiculo.get_combustivel_display }}</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="card-footer border-0 p-4 pt-0" style="background-color: transparent;">
-                <div class="d-flex gap-2 justify-content-end">
-                    <a 
-                        href="#" 
-                        class="btn btn-sm"
-                        title="Editar"
-                        style="background-color: #2a2a2a; color: #ffffff; border: 1px solid #404040; padding: 8px 16px; border-radius: 6px; transition: all 0.2s ease;"
-                        onmouseover="this.style.backgroundColor='#404040'"
-                        onmouseout="this.style.backgroundColor='#2a2a2a'"
-                    >
-                        <i class="bi bi-pencil me-1"></i> Editar
-                    </a>
-                    <a 
-                        href="#" 
-                        class="btn btn-sm"
-                        title="Excluir"
-                        style="background-color: #2a2a2a; color: #ff6b6b; border: 1px solid #404040; padding: 8px 16px; border-radius: 6px; transition: all 0.2s ease;"
-                        onmouseover="this.style.backgroundColor='#404040'"
-                        onmouseout="this.style.backgroundColor='#2a2a2a'"
-                    >
-                        <i class="bi bi-trash me-1"></i> Excluir
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-    {% empty %}
-    <div class="col-12">
-        <div class="text-center py-5" style="background-color: #1a1a1a; border-radius: 8px;">
-            <i class="bi bi-car-front mb-3" style="font-size: 3rem; color: #404040;"></i>
-            <p style="color: #6c757d; font-size: 1.1rem; margin: 0;">Nenhum veículo encontrado.</p>
-        </div>
-    </div>
-    {% endfor %}
-</div>
+<div class="row">
+  {% for veiculo in veiculos %}
+  <div class="col-md-6 col-lg-4 mb-4">
+    <div class="card h-100">
+      <!-- Área da imagem -->
+      <div
+        class="bg-light p-4 text-center"
+        style="
+          height: 180px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        "
+      >
+        <i class="bi bi-car-front text-secondary" style="font-size: 4rem"></i>
+      </div>
 
-<style>
-    .form-control:focus {
-        background-color: #2a2a2a !important;
-        border-color: #ffffff !important;
-        color: #ffffff !important;
-        box-shadow: 0 0 0 0.2rem rgba(255, 255, 255, 0.1) !important;
-    }
-    
-    .form-control::placeholder {
-        color: #6c757d !important;
-    }
-</style>
+      <div class="card-body">
+        <h5 class="card-title">
+          {{ veiculo.get_marca_display }} {{ veiculo.modelo }}
+        </h5>
+
+        <div class="row g-2 small text-muted">
+          <div class="col-6"><strong>Ano:</strong> {{ veiculo.ano }}</div>
+          <div class="col-6">
+            <strong>Cor:</strong> {{ veiculo.get_cor_display }}
+          </div>
+          <div class="col-12">
+            <strong>Combustível:</strong> {{ veiculo.get_combustivel_display }}
+          </div>
+        </div>
+      </div>
+
+      <div class="card-footer bg-white">
+        <div class="d-grid gap-2 d-md-flex">
+          <a href="#" class="btn btn-sm btn-outline-primary flex-md-fill">
+            <i class="bi bi-pencil me-1"></i> Editar
+          </a>
+          <a href="#" class="btn btn-sm btn-outline-danger flex-md-fill">
+            <i class="bi bi-trash me-1"></i> Excluir
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body text-center py-5">
+        <i class="bi bi-car-front text-muted mb-3" style="font-size: 5rem"></i>
+        <h4 class="text-muted">Nenhum veículo encontrado</h4>
+        <p class="text-muted">
+          Comece adicionando seu primeiro veículo ao sistema.
+        </p>
+        <a href="#" class="btn btn-primary mt-3">
+          <i class="bi bi-plus-lg me-2"></i>Cadastrar Veículo
+        </a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
 
 {% endblock %}
