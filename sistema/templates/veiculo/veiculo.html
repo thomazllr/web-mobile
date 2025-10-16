@@ -1,6 +1,4 @@
-{% extends 'base.html' %} 
-{% block title %}Lista de Veículos
-{% endblock %} 
+{% extends 'base.html' %} {% block title %}Lista de Veículos {% endblock %}
 {%block content %}
 
 <div class="d-flex justify-content-between align-items-center mb-4">
@@ -8,12 +6,11 @@
     <i class="bi bi-car-front me-2 text-primary"></i>
     Meus Veículos
   </h2>
-  <a href="#" class="btn btn-primary px-4 py-2 rounded">
+  <a href="{% url 'novo-veiculo' %}" class="btn btn-primary px-4 py-2 rounded">
     <i class="bi bi-plus-lg me-2"></i>Novo Veículo
   </a>
 </div>
 
-<!-- Formulário de Pesquisa -->
 <div class="card mb-4">
   <div class="card-body">
     <form class="row g-3">
@@ -45,16 +42,21 @@
   <div class="col-md-6 col-lg-4 mb-4">
     <div class="card h-100">
       <!-- Área da imagem -->
-      <div
-        class="bg-light p-4 text-center"
-        style="
-          height: 180px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        "
-      >
-        <i class="bi bi-car-front text-secondary" style="font-size: 4rem"></i>
+      <div class="bg-light" style="height: 180px; overflow: hidden">
+        {% if veiculo.foto %}
+        <img
+          src="{{ veiculo.foto.url }}"
+          alt="Foto do {{ veiculo.get_marca_display }} {{ veiculo.modelo }}"
+          class="img-fluid w-100 h-100"
+          style="object-fit: cover"
+        />
+        {% else %}
+        <div
+          class="p-4 text-center h-100 d-flex align-items-center justify-content-center"
+        >
+          <i class="bi bi-car-front text-secondary" style="font-size: 4rem"></i>
+        </div>
+        {% endif %}
       </div>
 
       <div class="card-body">
@@ -75,10 +77,20 @@
 
       <div class="card-footer bg-white">
         <div class="d-grid gap-2 d-md-flex">
-          <a href="#" class="btn btn-sm btn-outline-primary flex-md-fill">
+          <!-- TODO: Implementar view e URL para editar veículo -->
+          <a
+            href="#"
+            class="btn btn-sm btn-outline-primary flex-md-fill"
+            onclick="alert('Funcionalidade em desenvolvimento'); return false;"
+          >
             <i class="bi bi-pencil me-1"></i> Editar
           </a>
-          <a href="#" class="btn btn-sm btn-outline-danger flex-md-fill">
+          <!-- TODO: Implementar view e URL para excluir veículo -->
+          <a
+            href="#"
+            class="btn btn-sm btn-outline-danger flex-md-fill"
+            onclick="alert('Funcionalidade em desenvolvimento'); return false;"
+          >
             <i class="bi bi-trash me-1"></i> Excluir
           </a>
         </div>
@@ -94,7 +106,7 @@
         <p class="text-muted">
           Comece adicionando seu primeiro veículo ao sistema.
         </p>
-        <a href="#" class="btn btn-primary mt-3">
+        <a href="{% url 'novo-veiculo' %}" class="btn btn-primary mt-3">
           <i class="bi bi-plus-lg me-2"></i>Cadastrar Veículo
         </a>
       </div>

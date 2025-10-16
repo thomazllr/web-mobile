@@ -18,7 +18,7 @@
         <div class="container">
           <a class="navbar-brand fw-bold fs-4" href="#" style="color: #ffffff">
             <i class="bi me-2 text-primary"></i>
-            Thomaz'Carros
+            Veículos
           </a>
 
           <button
@@ -33,12 +33,18 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto ms-4">
               <li class="nav-item">
-                <a class="nav-link px-3 py-2 rounded-pill" href="#">
+                <a
+                  class="nav-link px-3 py-2 rounded-pill"
+                  href="{% url 'listar-veiculos' %}"
+                >
                   <i class="bi bi-list-ul me-2"></i>Veículos
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link px-3 py-2 rounded-pill" href="#">
+                <a
+                  class="nav-link px-3 py-2 rounded-pill"
+                  href="{% url 'novo-veiculo' %}"
+                >
                   <i class="bi bi-plus-circle me-2"></i>Cadastrar
                 </a>
               </li>
@@ -65,7 +71,10 @@
                   </li>
                   <li><hr class="dropdown-divider" /></li>
                   <li>
-                    <a class="dropdown-item py-2 text-danger" href="#">
+                    <a
+                      class="dropdown-item py-2 text-danger"
+                      href="{% url 'logout' %}"
+                    >
                       <i class="bi bi-box-arrow-right me-2"></i>Logout
                     </a>
                   </li>
