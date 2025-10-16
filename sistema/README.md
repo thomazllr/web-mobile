@@ -1,4 +1,4 @@
-# entrar em um virutal env
+# entrar em um virtual env
 
 ```
 source myenv/bin/activate
